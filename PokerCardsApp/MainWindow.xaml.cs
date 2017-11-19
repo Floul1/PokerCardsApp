@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PokerCardsApp.Cards;
 
 namespace PokerCardsApp
 {
@@ -23,6 +24,8 @@ namespace PokerCardsApp
         public MainWindow()
         {
             InitializeComponent();
+            var test = new CardsWhiteboard();
+            test.Show();
         }
     }
 }
