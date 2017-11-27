@@ -12,7 +12,7 @@ namespace PokerCardsApp
         public MainWindow()
         {
             InitializeComponent();
-            new BlindCreator().Show();
+            new CardsWhiteboard().Show();
         }
     }
 }

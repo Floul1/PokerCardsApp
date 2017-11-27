@@ -12,9 +12,11 @@ namespace PokerCardsApp.Poker
     /// </summary>
     public partial class BlindCreator : Window
     {
+        public List<BlindLevel> CurrentBlindsDisplayed = new List<BlindLevel>();
         public BlindCreator()
         {
             InitializeComponent();
+            BlindsListBox.ItemsSource = CurrentBlindsDisplayed;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,28 @@ namespace PokerCardsApp.Poker
             {
                 var results = Serializer.Deserialize<PokerTournamentStructure>(file);
             }
+        }
+
+        private void AddBlindButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var addLevel = new BlindLevel();
+            if (int.TryParse(BigBlindBox.Text, out addLevel.BigBlind) && int.TryParse(SmallBlindBox.Text, out addLevel.SmallBlind))
+            {
+                int.TryParse(AnteBox.Text, out addLevel.Ante);
+                CurrentBlindsDisplayed.Add(addLevel);               
+            }
+            
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BlindsListBox.SelectedItems.Count == 0) return;
+            foreach (BlindLevel item in BlindsListBox.SelectedItems)
+            {
+                CurrentBlindsDisplayed.Remove(item);
+            }
+            
         }
     }
 }

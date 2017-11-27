@@ -4,15 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokerCardsApp.Poker"
+        xmlns:poker="clr-namespace:NewCardsFramework.Poker;assembly=NewCardsFramework"
         mc:Ignorable="d"
         Title="Tournament Creator" Height="409.524" Width="663.81">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="213*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="41*"/>
             <RowDefinition Height="298*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
-        <Button x:Name="CloseButton" Content="Button" HorizontalAlignment="Left" Margin="106,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="CloseButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="SaveButton_Click" Height="20"/>
+        <Button x:Name="CloseButton" Content="Button" HorizontalAlignment="Left" Margin="106,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="CloseButton_Click" Height="20"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="57*"/>
+                <ColumnDefinition Width="58*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="BlindsListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="poker:BlindLevel">
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding SmallBlindUI}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <Button x:Name="RemoveButton" Content="Remove" Grid.Column="1" Margin="10,268,10,10" Click="RemoveButton_Click"/>
+            <Button x:Name="AddBlindButton" Content="&lt;- Add" Grid.Column="1" Margin="10,10,10,268" Click="AddBlindButton_Click"/>
+            <TextBox x:Name="SmallBlindBox" Grid.Column="1" Margin="10,69,10,206" TextWrapping="Wrap"/>
+            <TextBox x:Name="BigBlindBox" Grid.Column="1" Margin="10,120,10,155" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" Margin="10,54,10,229" TextWrapping="Wrap" Text="Small Blind"/>
+            <TextBox x:Name="AnteBox" Grid.Column="1" Margin="10,240,10,35" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17"><Run Text="Ante"/><LineBreak/><Run/></TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,104,0,0" TextWrapping="Wrap" Text="Big Blind" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>
