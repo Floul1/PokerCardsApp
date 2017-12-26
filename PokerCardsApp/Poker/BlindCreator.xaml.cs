@@ -75,5 +75,10 @@ namespace PokerCardsApp.Poker
             }
             
         }
+
+        private void LoadAndSaveBasic()
+        {
+            
+        }
     }
 }

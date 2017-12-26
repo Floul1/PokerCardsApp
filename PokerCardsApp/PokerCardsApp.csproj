@@ -84,10 +84,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Poker\BlindTimerController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Poker\BlindTimerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Poker\BlindCreator.xaml.cs">
       <DependentUpon>BlindCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Poker\BlindTimerController.xaml.cs">
+      <DependentUpon>BlindTimerController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Poker\BlindTimerWindow.xaml.cs">
+      <DependentUpon>BlindTimerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
