@@ -12,30 +12,49 @@ namespace PokerCardsApp.Poker
     {
         private PokerTournament _currentTournament;
         internal static TimeSpan BlindTime;
-        private BlindLevel CurrentLevel;
-        private DispatcherTimer UiUpdater;
-        private DispatcherTimer BlindTimer;
-        private static int SecondsPassed = 0;
-        private static TimeSpan TimeRemaining = BlindTime.Subtract(TimeSpan.FromSeconds(SecondsPassed));
+        private BlindLevel _currentLevel;
+        private BlindLevel _nextLevel;
+        private DispatcherTimer _uiUpdater;
+        private DispatcherTimer _blindTimer;
+        private static int _secondsPassed = 0;
+        
+        private static TimeSpan _timeRemaining = BlindTime.Subtract(TimeSpan.FromSeconds(_secondsPassed));
         /// <summary>
         /// Constructor for Simple Data
         /// </summary>
-        public BlindTimerWindow(TimeSpan blindTime)
+        public BlindTimerWindow(TimeSpan blindTime,BlindLevel currentLevel)
         {
             
             InitializeComponent();
             BlindTime = blindTime;
-            UiUpdater = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)}; //Create the UiUpdater
-            UiUpdater.Tick += UiUpdater_Tick;
+            _currentLevel = currentLevel;
+            _uiUpdater = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)}; //Create the UiUpdater
+            _uiUpdater.Tick += UiUpdater_Tick;
 
-            BlindTimer = new DispatcherTimer {Interval = blindTime};
-            BlindTimer.Tick += BlindTimer_Tick;
+            _blindTimer = new DispatcherTimer {Interval = blindTime};
+            _blindTimer.Tick += BlindTimer_Tick;
         }
 
         
         private void BlindTimer_Tick(object sender, EventArgs e)
         {
-            SecondsPassed = 0;
+            _blindTimer.Stop();
+            _secondsPassed = 0;
+            if (_nextLevel != null)
+            {
+                _currentLevel = _nextLevel;
+            }
+            if (_currentTournament == null)
+            {
+                _nextLevel = _currentTournament.TournamentStructure.GetNextLevel(_currentLevel);
+            }
+            else
+            {
+                _nextLevel = null;
+            }
+
+
+            _blindTimer.Start();
             //PlayNextLevelSound
             throw new NotImplementedException();
         }
@@ -47,17 +66,17 @@ namespace PokerCardsApp.Poker
         /// <param name="e"></param>
         private void UiUpdater_Tick(object sender, EventArgs e)
         {
-            SecondsPassed++;
+            _secondsPassed++;
             throw new NotImplementedException();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name=""></param>
-        public void SetNextBlindLevel(BlindLevel)
+        /// <param name="nextLevel"></param>
+        public void SetNextBlindLevel(BlindLevel nextLevel)
         {
-
+            _nextLevel = nextLevel;
         }
     }
 }
