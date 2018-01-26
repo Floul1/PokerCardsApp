@@ -44,14 +44,7 @@ namespace PokerCardsApp.Poker
             {
                 _currentLevel = _nextLevel;
             }
-            if (_currentTournament == null)
-            {
-                _nextLevel = _currentTournament.TournamentStructure.GetNextLevel(_currentLevel);
-            }
-            else
-            {
-                _nextLevel = null;
-            }
+            _nextLevel = _currentTournament?.TournamentStructure.GetNextLevel(_currentLevel);
 
 
             _blindTimer.Start();
