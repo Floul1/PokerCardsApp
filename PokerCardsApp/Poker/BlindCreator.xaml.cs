@@ -68,14 +68,6 @@ namespace PokerCardsApp.Poker
         private void AddBlindButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var addLevel = new BlindLevel();
-            if (!int.TryParse(BigBlindBox.Text, out addLevel.BigBlind) ||
-                !int.TryParse(SmallBlindBox.Text, out addLevel.SmallBlind)) return;
-            if (CurrentBlindsDisplayed.Any(x => x.SmallBlind == addLevel.BigBlind)) return;
-            int.TryParse(AnteBox.Text, out addLevel.Ante);
-            CurrentBlindsDisplayed.Add(addLevel);
-            CurrentBlindsDisplayed.Sort();
-            BlindsListBox.ItemsSource = CurrentBlindsDisplayed;
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
